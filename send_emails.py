@@ -1,6 +1,7 @@
 import os, ssl
 import smtplib
-from email.header import Header
+from email.mime.text import MIMEText
+from jinja2 import Template
 
 email_sender= os.environ.get('MY_EMAIL')
 email_password= os.environ.get('EMAIL_PASSWORD')
@@ -10,10 +11,17 @@ smtp_port = 587
 smtp_server = "smtp.gmail.com"
 
 recipient = "Gracie Abrams"
+agent = "Gracie Abram's mom"
 # content of message
 subject = f"Subject: {recipient} | UCLA Celebrity Judge Opportunity\n"
 body = f"Hello {recipient}, \n\n On behalf of the UCLA Student Alumni Association..."
-message = subject + body
+
+message = render_template("display.html", agent="Dude", celeb="Gracie Abram", celeb_informal="Gracie", pronoun="she")
+
+msg = MIMEText(message, "html")
+msg["Subject"] = subject
+msg["From"] = email_sender
+msg["To"] = email_recipient
 
 
 simple_email_context = ssl.create_default_context()
