@@ -29,6 +29,12 @@ inputs = {
 }
 message = template.render(inputs)
 
+# temp to test AIRES stuff lol
+
+template = template_env.get_template("aires.html")
+message = template.render()
+
+
 #message = template.render("display.html", agent="Dude", celeb="Gracie Abram", celeb_informal="Gracie", pronoun="she")
 
 
