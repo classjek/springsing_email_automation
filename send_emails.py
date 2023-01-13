@@ -6,7 +6,9 @@ import jinja2
 
 email_sender= os.environ.get('MY_EMAIL')
 email_password= os.environ.get('EMAIL_PASSWORD')
-email_recipient = os.environ.get('EMAIL_RECEIVER')
+#email_recipient = os.environ.get('EMAIL_RECEIVER')
+email_recipient = 'cbradley2002@g.ucla.edu'
+
 
 smtp_port = 587 
 smtp_server = "smtp.gmail.com"
@@ -19,26 +21,20 @@ body = f"Hello {recipient}, \n\n On behalf of the UCLA Student Alumni Associatio
 
 template_loader = jinja2.FileSystemLoader(searchpath="./templates/")
 template_env = jinja2.Environment(loader=template_loader)
-template = template_env.get_template("display.html")
+template = template_env.get_template("invitation.html")
 
 inputs = {
-    "agent": "Dude",
+    "agent": "agent",
     "celeb": "Gracie Abram",
     "celeb_informal": "Gracie",
     "pronoun": "she"
 }
 message = template.render(inputs)
 
-# temp to test AIRES stuff lol
-
-template = template_env.get_template("aires.html")
-message = template.render()
-
-
 #message = template.render("display.html", agent="Dude", celeb="Gracie Abram", celeb_informal="Gracie", pronoun="she")
 
 
-#msg = MIMEText(message, "html")
+msg = MIMEText(message, "html")
 msg=MIMEMultipart()
 msg.attach(MIMEText(message, 'html'))
 msg["Subject"] = subject
