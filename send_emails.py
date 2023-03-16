@@ -5,11 +5,12 @@ from email.mime.multipart import MIMEMultipart
 import jinja2
 import pandas as pd
 
+
 email_sender= os.environ.get('MY_EMAIL')
 email_password= os.environ.get('EMAIL_PASSWORD')
 #email_recipient = os.environ.get('EMAIL_RECEIVER')
 #email_recipient = 'nikkiaviv@g.ucla.edu'
-email_recipient = 'jekoniak13@gmail.com'
+email_recipient = 'niknaknca@aol.com'
 
 smtp_port = 587 
 smtp_server = "smtp.gmail.com"
@@ -73,7 +74,7 @@ for index, row in df.iterrows():
     email = row['Email']
     #print(row['Manager'], row['Celebrity'])
 
-    email_recipient = email
+    #email_recipient = email
     subject = f"Subject: {celeb} | UCLA Celebrity Judge Opportunity\n"
 
     # load email 
@@ -96,17 +97,40 @@ for index, row in df.iterrows():
 
     simple_email_context = ssl.create_default_context()
 
-    print('send email to', email_recipient, 'managers name is', manager)
+    #print('send email to', email_recipient, 'managers name is', manager)
 
     # send email
+
+    # why rb? 
+
+    """this aint working brah
+    pdf_file = open('letter.pdf', 'rb')
     
+    existing_pdf = 'letter.pdf'
+    output_pdf = 'output.pdf'
+    pdf_canvas = canvas.Canvas('letterhead.pdf')
+
+    pdf_canvas.setFont('Helvetica', 12)
+
+    x = 100
+    y = 100
+
+    text = 'Please be working'
+    pdf_canvas.drawString(x, y, text)
+
+    pdf_canvas.save()
+    """
+    
+    """
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
         server.login(email_sender, email_password)
         server.sendmail(email_sender, email_recipient, msg.as_string())
-    
+    """
 
-"""
+
+
 with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
     server.login(email_sender, email_password)
     server.sendmail(email_sender, email_recipient, msg.as_string())
-"""
+
+print('email sent to', email_recipient)
