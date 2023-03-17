@@ -2,15 +2,18 @@ import os, ssl
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.image import MIMEImage
 import jinja2
 import pandas as pd
+import svgwrite
+import base64
 
 
 email_sender= os.environ.get('MY_EMAIL')
 email_password= os.environ.get('EMAIL_PASSWORD')
 #email_recipient = os.environ.get('EMAIL_RECEIVER')
 #email_recipient = 'nikkiaviv@g.ucla.edu'
-email_recipient = 'niknaknca@aol.com'
+#email_recipient = 'niknaknca@aol.com'
 
 smtp_port = 587 
 smtp_server = "smtp.gmail.com"
@@ -42,39 +45,19 @@ msg=MIMEMultipart()
 msg.attach(MIMEText(message, 'html'))
 msg["Subject"] = subject
 msg["From"] = email_sender
-msg["To"] = email_recipient
+#msg["To"] = email_recipient
 
 
 simple_email_context = ssl.create_default_context()
 
-"""
-try: 
-    print("Connecting to server")
-    TIE_server = smtplib.SMTP(smtp_server, smtp_port)
-    TIE_server.starttls(context=simple_email_context)
-    TIE_server.login(email_sender, email_password)
-    print("connected to server")
-
-    print()
-    print(f"Sending email to - {email_recipient}")
-    TIE_server.sendmail(email_sender, email_recipient, message.as_string())
-    print(f"Email successfulyl sent to - {email_recipient}")
-
-except Exception as e:
-    print(e)
-
-finally: 
-    TIE_server.quit()
-"""
-
-df = pd.read_csv('outreach.csv')
+df = pd.read_csv('one.csv')
 for index, row in df.iterrows():
     manager = row['Manager']
     celeb = row['Celebrity']
     email = row['Email']
-    #print(row['Manager'], row['Celebrity'])
+    print(row['Manager'], row['Celebrity'])
 
-    #email_recipient = email
+    email_recipient = email
     subject = f"Subject: {celeb} | UCLA Celebrity Judge Opportunity\n"
 
     # load email 
@@ -94,43 +77,19 @@ for index, row in df.iterrows():
     msg["From"] = email_sender
     msg["To"] = email_recipient
 
+    # open svg and read its contents
+    with open('letterhead3.svg', 'rb') as f:
+        svg_data = f.read()
+    
+    # add svg as an attachment
+    svg_part = MIMEImage(svg_data, name='invitation.svg', _subtype='svg+xml')
+    msg.attach(svg_part)
+
+
 
     simple_email_context = ssl.create_default_context()
 
-    #print('send email to', email_recipient, 'managers name is', manager)
-
-    # send email
-
-    # why rb? 
-
-    """this aint working brah
-    pdf_file = open('letter.pdf', 'rb')
-    
-    existing_pdf = 'letter.pdf'
-    output_pdf = 'output.pdf'
-    pdf_canvas = canvas.Canvas('letterhead.pdf')
-
-    pdf_canvas.setFont('Helvetica', 12)
-
-    x = 100
-    y = 100
-
-    text = 'Please be working'
-    pdf_canvas.drawString(x, y, text)
-
-    pdf_canvas.save()
-    """
-    
-    """
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
         server.login(email_sender, email_password)
         server.sendmail(email_sender, email_recipient, msg.as_string())
-    """
 
-
-
-with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-    server.login(email_sender, email_password)
-    server.sendmail(email_sender, email_recipient, msg.as_string())
-
-print('email sent to', email_recipient)
