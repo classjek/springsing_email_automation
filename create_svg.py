@@ -93,18 +93,21 @@ drawing.add(drawing.circle(center=(650, 820), r=145, fill=rgb_color))
 
 # Add UCLA logo 
 rgb_color = 'rgb({}, {}, {})'.format(17, 111, 160)
-square = svgwrite.shapes.Rect(insert=(50, 720), size=('100px', '40px'), fill=rgb_color)
+square = svgwrite.shapes.Rect(insert=(35, 740), size=('100px', '40px'), fill=rgb_color)
 drawing.add(square)
 #ucla = drawing.text('UCLA', insert=(64, 776), style = "font-size:27px; font-family:Greenwich-BoldItalic; font_weight:bold", fill='white', stroke='white', stroke_width="1")
-ucla = drawing.text('U', insert=(64, 756), font_family='Arial', style = "font-size:23px; font_weight:bold; italic;", fill='white', stroke='white', stroke_width='2')
+xcord = 50
+ycord = 769
+
+ucla = drawing.text('U', insert=(xcord, ycord), font_family='Arial', style = "font-size:23px; font_weight:bold; italic;", fill='white', stroke='white', stroke_width='2')
 drawing.add(ucla)
-ucla = drawing.text('C', insert=(82, 756), font_family='Arial', style = "font-size:23px; font_weight:bold; italic;", fill='white', stroke='white', stroke_width='2')
+ucla = drawing.text('C', insert=(xcord+18, ycord), font_family='Arial', style = "font-size:23px; font_weight:bold; italic;", fill='white', stroke='white', stroke_width='2')
 drawing.add(ucla)
-ucla = drawing.text('L', insert=(101, 756), font_family='Arial', style = "font-size:23px; font_weight:bold; italic", fill='white', stroke='white', stroke_width='2')
+ucla = drawing.text('L', insert=(xcord+36, ycord), font_family='Arial', style = "font-size:23px; font_weight:bold; italic", fill='white', stroke='white', stroke_width='2')
 drawing.add(ucla)
-ucla = drawing.text('A', insert=(117, 756), font_family='Arial', style = "font-size:23px; font_weight:bold; italic", fill='white', stroke='white', stroke_width='2')
+ucla = drawing.text('A', insert=(xcord+52, ycord), font_family='Arial', style = "font-size:23px; font_weight:bold; italic", fill='white', stroke='white', stroke_width='2')
 drawing.add(ucla)
-alumni = drawing.text('Alumni', insert=(145, 776), font_family='Arial', style = "font-size:25px", fill='black')
+alumni = drawing.text('Alumni', insert=(145, 771), font_family='Arial', style = "font-size:30px; font_weight:bold;", fill='black', stroke='black', stroke_width='1')
 drawing.add(alumni)
 # this shit don't want to export 
 """
