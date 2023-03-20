@@ -138,7 +138,7 @@ drawing.add(drawing.circle(center=(530, 100), r=45, fill=rgb_color))
 rgb_color = 'rgb({}, {}, {})'.format(217, 231, 242)
 twothree = drawing.text('2023', insert=(503, 109), font_family='Arial', style='font-size:25px; font_weight:bold;', fill=rgb_color, stroke=rgb_color, stroke_width='1.5')
 drawing.add(twothree)
-spring = drawing.text("Spring Sing", insert=(xcord, ycord), font_family='Verdana', style='font-size:60px;')
+spring = drawing.text("Spring Sing", insert=(200, 200), font_family='Brush Script MT', style='font-size:60px;')
 drawing.add(spring)
 
 
