@@ -2,7 +2,6 @@ import svgwrite
 
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPDF
-import cairosvg
 
 
 def create_text(manager, celeb):
@@ -92,9 +91,23 @@ drawing.add(drawing.circle(center=(650, 820), r=170, fill=rgb_color))
 rgb_color = 'rgb({}, {}, {})'.format(0, 59, 92)
 drawing.add(drawing.circle(center=(650, 820), r=145, fill=rgb_color))
 
-
+# Add UCLA logo 
+rgb_color = 'rgb({}, {}, {})'.format(17, 111, 160)
+square = svgwrite.shapes.Rect(insert=(50, 720), size=('100px', '40px'), fill=rgb_color)
+drawing.add(square)
+#ucla = drawing.text('UCLA', insert=(64, 776), style = "font-size:27px; font-family:Greenwich-BoldItalic; font_weight:bold", fill='white', stroke='white', stroke_width="1")
+ucla = drawing.text('U', insert=(64, 756), font_family='Arial', style = "font-size:23px; font_weight:bold; italic;", fill='white', stroke='white', stroke_width='2')
+drawing.add(ucla)
+ucla = drawing.text('C', insert=(82, 756), font_family='Arial', style = "font-size:23px; font_weight:bold; italic;", fill='white', stroke='white', stroke_width='2')
+drawing.add(ucla)
+ucla = drawing.text('L', insert=(101, 756), font_family='Arial', style = "font-size:23px; font_weight:bold; italic", fill='white', stroke='white', stroke_width='2')
+drawing.add(ucla)
+ucla = drawing.text('A', insert=(117, 756), font_family='Arial', style = "font-size:23px; font_weight:bold; italic", fill='white', stroke='white', stroke_width='2')
+drawing.add(ucla)
+alumni = drawing.text('Alumni', insert=(145, 776), font_family='Arial', style = "font-size:25px", fill='black')
+drawing.add(alumni)
 # this shit don't want to export 
-
+"""
 # add spring sing logo 
 image = drawing.image(href='sing.png', insert=(325,-50), size=(275, 275))
 drawing.add(image)
@@ -109,7 +122,7 @@ drawing.add(image)
 # add ucla alumni logo 
 image = drawing.image(href='ucla_alum.png', insert=(0, 650), size=(200, 200))
 drawing.add(image)
-
+"""
 
 # adding text to it
 
@@ -127,7 +140,3 @@ for line in splext:
 
 drawing.save()
 
-# attempt to save SVG to PDF with Cairo 
-cairosvg.svg2pdf(url='letterheard3.svg', write_to='invitation.pdf')
-
-print('pdf success yay')
