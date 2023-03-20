@@ -58,38 +58,49 @@ r, g, b, = 217, 231, 242
 rgb_color = 'rgb({}, {}, {})'.format(r, g, b)
 drawing.add(svgwrite.shapes.Rect(insert=(0, 0), size=(700, 792), fill= rgb_color))
 
+radius = 200
+
 # add circles in top left
 # outermost circle
 rgb_color = 'rgb({}, {}, {})'.format(0, 59, 92)
-drawing.add(drawing.circle(center=(0, -50), r=245, fill=rgb_color))
+drawing.add(drawing.circle(center=(0, -50), r=radius, fill=rgb_color))
 # next inner
 rgb_color = 'rgb({}, {}, {})'.format(235, 236, 220)
-drawing.add(drawing.circle(center=(0, -50), r=220, fill=rgb_color))
+drawing.add(drawing.circle(center=(0, -50), r=radius-25, fill=rgb_color))
 # next inner
 rgb_color = 'rgb({}, {}, {})'.format(97, 156, 207)
-drawing.add(drawing.circle(center=(0, -50), r=195, fill=rgb_color))
+drawing.add(drawing.circle(center=(0, -50), r=radius-50, fill=rgb_color))
 # next inner
 rgb_color = 'rgb({}, {}, {})'.format(234, 194, 85)
-drawing.add(drawing.circle(center=(0, -50), r=170, fill=rgb_color))
+drawing.add(drawing.circle(center=(0, -50), r=radius-75, fill=rgb_color))
 # next inner
 rgb_color = 'rgb({}, {}, {})'.format(0, 59, 92)
-drawing.add(drawing.circle(center=(0, -50), r=145, fill=rgb_color))
+drawing.add(drawing.circle(center=(0, -50), r=radius-100, fill=rgb_color))
+# next inner
+rgb_color = 'rgb({}, {}, {})'.format(235, 236, 220)
+drawing.add(drawing.circle(center=(0, -50), r=radius-125, fill=rgb_color))
+# next inner, same color as background
+rgb_color = 'rgb({}, {}, {})'.format(217, 231, 242)
+drawing.add(drawing.circle(center=(0, -50), r=radius-150, fill=rgb_color))
 
 # add circles to bottom right
 rgb_color = 'rgb({}, {}, {})'.format(0, 59, 92)
-drawing.add(drawing.circle(center=(650, 820), r=245, fill=rgb_color))
+drawing.add(drawing.circle(center=(650, 820), r=radius, fill=rgb_color))
 # next inner
 rgb_color = 'rgb({}, {}, {})'.format(235, 236, 220)
-drawing.add(drawing.circle(center=(650, 820), r=220, fill=rgb_color))
+drawing.add(drawing.circle(center=(650, 820), r=radius-25, fill=rgb_color))
 # next inner
 rgb_color = 'rgb({}, {}, {})'.format(97, 156, 207)
-drawing.add(drawing.circle(center=(650, 820), r=195, fill=rgb_color))
+drawing.add(drawing.circle(center=(650, 820), r=radius-50, fill=rgb_color))
 # next inner
 rgb_color = 'rgb({}, {}, {})'.format(234, 194, 85)
-drawing.add(drawing.circle(center=(650, 820), r=170, fill=rgb_color))
+drawing.add(drawing.circle(center=(650, 820), r=radius - 75, fill=rgb_color))
 # next inner
 rgb_color = 'rgb({}, {}, {})'.format(0, 59, 92)
-drawing.add(drawing.circle(center=(650, 820), r=145, fill=rgb_color))
+drawing.add(drawing.circle(center=(650, 820), r=radius-100, fill=rgb_color))
+# next inner
+rgb_color = 'rgb({}, {}, {})'.format(235, 236, 220)
+drawing.add(drawing.circle(center=(650, 820), r=radius-125, fill=rgb_color))
 
 # Add UCLA logo 
 rgb_color = 'rgb({}, {}, {})'.format(17, 111, 160)
@@ -109,6 +120,22 @@ ucla = drawing.text('A', insert=(xcord+52, ycord), font_family='Arial', style = 
 drawing.add(ucla)
 alumni = drawing.text('Alumni', insert=(145, 771), font_family='Arial', style = "font-size:30px; font_weight:bold;", fill='black', stroke='black', stroke_width='1')
 drawing.add(alumni)
+
+# SAA logo brah
+xcord = 268
+ycord = 776
+SAA = drawing.text('S', insert=(xcord, ycord), font_family='Arial', style = "font-size:60px; font_weight:bold; italic", fill='white', stroke='white', stroke_width='4')
+drawing.add(SAA)
+SAA = drawing.text('A', insert=(xcord+35, ycord), font_family='Arial', style = "font-size:60px; font_weight:bold; italic", fill='white', stroke='white', stroke_width='4')
+drawing.add(SAA)
+SAA = drawing.text('A', insert=(xcord+70, ycord), font_family='Arial', style = "font-size:60px; font_weight:bold; italic", fill='white', stroke='white', stroke_width='4')
+drawing.add(SAA)
+
+# Spring Sing Logo Brah
+spring = drawing.text("Spring Sing", insert=(xcord, ycord), font_family='Verdana', style='font-size:60px;')
+drawing.add(spring)
+
+
 # this shit don't want to export 
 """
 # add spring sing logo 
