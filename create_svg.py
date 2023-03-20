@@ -131,7 +131,13 @@ drawing.add(SAA)
 SAA = drawing.text('A', insert=(xcord+70, ycord), font_family='Arial', style = "font-size:60px; font_weight:bold; italic", fill='white', stroke='white', stroke_width='4')
 drawing.add(SAA)
 
+
 # Spring Sing Logo Brah
+rgb_color = 'rgb({}, {}, {})'.format(17, 111, 160)
+drawing.add(drawing.circle(center=(530, 100), r=45, fill=rgb_color))
+rgb_color = 'rgb({}, {}, {})'.format(217, 231, 242)
+twothree = drawing.text('2023', insert=(503, 109), font_family='Arial', style='font-size:25px; font_weight:bold;', fill=rgb_color, stroke=rgb_color, stroke_width='1.5')
+drawing.add(twothree)
 spring = drawing.text("Spring Sing", insert=(xcord, ycord), font_family='Verdana', style='font-size:60px;')
 drawing.add(spring)
 
