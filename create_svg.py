@@ -2,6 +2,7 @@ import svgwrite
 
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPDF
+import cairosvg
 
 
 def create_text(manager, celeb):
@@ -91,6 +92,9 @@ drawing.add(drawing.circle(center=(650, 820), r=170, fill=rgb_color))
 rgb_color = 'rgb({}, {}, {})'.format(0, 59, 92)
 drawing.add(drawing.circle(center=(650, 820), r=145, fill=rgb_color))
 
+
+# this shit don't want to export 
+
 # add spring sing logo 
 image = drawing.image(href='sing.png', insert=(325,-50), size=(275, 275))
 drawing.add(image)
@@ -106,12 +110,13 @@ drawing.add(image)
 image = drawing.image(href='ucla_alum.png', insert=(0, 650), size=(200, 200))
 drawing.add(image)
 
+
 # adding text to it
 
-manager = 'Manago'
-celeb = 'celebo'
+manager = 'Jake\'s Manger'
+celeb = 'Shaan Goel'
 
-text = create_text("Manago", "celebo")
+text = create_text(manager, celeb)
 splext = text.split('\n')
 
 y = 200
@@ -122,5 +127,7 @@ for line in splext:
 
 drawing.save()
 
-drawing = svg2rlg('letterhead3.svg')
-renderPDF.drawToFile(drawing, 'file.pdf', autoSize=0)
+# attempt to save SVG to PDF with Cairo 
+cairosvg.svg2pdf(url='letterheard3.svg', write_to='invitation.pdf')
+
+print('pdf success yay')
